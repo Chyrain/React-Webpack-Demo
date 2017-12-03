@@ -1,6 +1,7 @@
 # Webpack-Demo
 
 A webpack demo build for front-end engineering project.
+
 一个使用webpack优化前端自动化构建的Demo.
 
 > Demo has create a simple example using react and redux for test. You can change the project and edit `build_config/` as you like.
