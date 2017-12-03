@@ -34,7 +34,7 @@ class Counter extends Component {
         <button onClick={this.incrementAsync}>
           Increment async
         </button>
-        <i class="icon-rot-anti icon-2x icon-border icon-muted pull-left"></i>
+        <i class="icon-like icon-2x icon-border icon-muted pull-left"></i>
       </p>
     )
   }

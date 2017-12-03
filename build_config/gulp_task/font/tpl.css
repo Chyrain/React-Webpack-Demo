@@ -47,6 +47,74 @@
 	color: transparent !important;
 }
 
+
+/* 扩展图标样式 */
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg); 
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+            transform: rotate(359deg);
+  } 
+}
+
+[class^="icon-"].icon-spin,
+[class*=" icon-"].icon-spin {
+  display: inline-block;
+  -webkit-animation: spin 2s infinite linear;
+          animation: spin 2s infinite linear; 
+}
+[class^="icon-"].pull-left,
+[class*=" icon-"].pull-left {
+  margin-right: .3em; 
+}
+[class^="icon-"].pull-right,
+[class*=" icon-"].pull-right {
+  margin-left: .3em; 
+}
+.pull-left {
+  float: left; 
+}
+.pull-right {
+  float: right; 
+}
+.icon-large:before {
+  vertical-align: -10%;
+  font-size: 1.3333333333333333em; 
+}
+.icon-2x {
+  font-size: 2em; 
+}
+.icon-3x {
+  font-size: 3em; 
+}
+.icon-4x {
+  font-size: 4em; 
+}
+.icon-border {
+  border: solid 1px #eee;
+  padding: .2em .25em .15em;
+  border-radius: 3px; 
+}
+.icon-border.icon-4x {
+  border-width: 4px;
+  border-radius: 6px; 
+}
+.icon-border.icon-3x {
+  border-width: 3px;
+  border-radius: 5px; 
+}
+.icon-border.icon-2x {
+  border-width: 2px;
+  border-radius: 4px; 
+}
+
+.icon-muted {
+  color: #eee; 
+}
+
 <% _.each(glyphs, function(glyph) { %>
 .v5-<%= glyph.name %>::before {
 	content: "\<%= glyph.unicode['0'].charCodeAt(0).toString(16).toUpperCase() %>";
