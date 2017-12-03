@@ -3,6 +3,8 @@
 A webpack demo build for front-end engineering project.
 一个使用webpack优化前端自动化构建的Demo.
 
+> Demo创建了一个使用react和redux的简单项目，用于测试项目构建。
+
 ## install
 
 ```sh
