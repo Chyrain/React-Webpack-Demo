@@ -1,0 +1,12 @@
+@import 'assets/fonts/v5.scss';
+@import './Components/Counter.scss';
+
+$fontStack:    Helvetica, sans-serif;
+$primaryColor: #333;
+
+body {
+  font-family: $fontStack;
+  color: $primaryColor;
+  /* 图片相对路径为/src */
+  background: url('./assets/img/bg.jpeg') center no-repeat;
+}

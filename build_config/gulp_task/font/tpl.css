@@ -1,0 +1,54 @@
+.icon,
+.<%= className %> {
+	display: inline-block;
+	font-size: inherit;
+	font-weight: normal;
+	font-style: normal;
+	text-rendering: auto;
+	text-transform: translate(0, 0);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.icon::before,
+.<%= className %>::before {
+	width: 1.0714em;
+	vertical-align: -4%;
+	speak: none;
+	text-align: center;
+	font-variant: normal;
+	line-height: 1em;
+}
+.<%= className %>-bg { 
+	/* 透明字 使用覆盖图片 */
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 10em;
+	color: transparent !important;
+}
+.<%= className %>-bg::before {
+	color: transparent !important;
+}
+
+@font-face {
+	font-family: "<%= fontName %>";
+	src: url("<%= fontRefer %>/<%= fontName %>.eot");
+	src: url("<%= fontRefer %>/<%= fontName %>.eot?#iefix") format("embedded-opentype"),
+		url("<%= fontRefer %>/<%= fontName %>.woff2") format("woff2"),
+		url("<%= fontRefer %>/<%= fontName %>.woff") format("woff"),
+		url("<%= fontRefer %>/<%= fontName %>.ttf") format("truetype"),
+		url("<%= fontRefer %>/<%= fontName %>.svg#<%= fontName %>") format("svg");
+}
+
+.<%= className %> {
+	font-family: "<%= fontName %>";
+}
+
+[class^="<%= className %>-"]::before {
+	font-family: "<%= fontName %>";
+}
+
+<% _.each(glyphs, function(glyph) { %>
+.v5-<%= glyph.name %>::before {
+	content: "\<%= glyph.unicode['0'].charCodeAt(0).toString(16).toUpperCase() %>";
+}<% }); %>
