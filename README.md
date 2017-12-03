@@ -37,4 +37,15 @@ npm start
 
 ```sh
 npm run build
+# equals
+npm run build:dll && npm run build:dist
+# if dll not change, we dont need `npm run build:dll`, just use `npm run build:dist`
+```
+
+
+## Others
+
+```sh
+npm run server	# A server to test distribution
+npm run clean 	# Clear dist/ directory
 ```
