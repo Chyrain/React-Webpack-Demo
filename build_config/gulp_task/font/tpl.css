@@ -44,7 +44,7 @@
 	font-family: "<%= fontName %>";
 }
 
-[class^="<%= className %>-"]::before {
+[class*="<%= className %>-"]::before {
 	font-family: "<%= fontName %>";
 }
 

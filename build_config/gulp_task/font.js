@@ -6,8 +6,9 @@ var gulp = require('gulp'),
 	iconfont = require('gulp-iconfont'),
 	consolidate = require('gulp-consolidate'),
 	rename = require('gulp-rename'),
-	APP_PATH = 'src/app/';
+	APP_PATH = 'src/app/'; // 相对于项目根目录
 
+// key值为字体名称（这里是'hyfont'）
 regTasks({
 	hyfont: 'assets/fonts'
 });
@@ -47,7 +48,7 @@ function regTask(name, val) {
 				prependUnicode: true // true会将生成的编码添加到svg文件名前，用于保证下次使用相同的编码
 			}))
 			.on('glyphs', function(glyphs/*, options*/) {
-				// 生成样例html、stylus、css、json
+				// 生成样例html、stylus、scss、css、json
 				gulp.src('tpl.*', {
 						cwd: 'build_config/gulp_task/font'
 					})
