@@ -58,3 +58,6 @@ typings/
 .env
 
 build_config/manifest.json
+dist/
+**/fonts/
+!**/fonts/svg
