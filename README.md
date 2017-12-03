@@ -16,11 +16,11 @@ Run this to init project.
 npm run init
 ```
 
-init includes font build and dll build.
+init includes iconfont build and dll build.
 
-- build font
+- build iconfont
 
-Run this after you run `npm install`, and when you change fonts svg in `src/app/assets/fonts/`.
+Run this after you run `npm install`, and when you change fonts icon(svg) in `src/app/assets/fonts/`.
 
 ```sh
 gulp font:hyfont
