@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 
 // key值为字体名称（这里是'hyfont'）
 regTasks({
-	hyfont: 'assets/fonts'
+	icon: 'assets/fonts'
 });
 
 function regTasks(options) {

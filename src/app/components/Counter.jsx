@@ -19,13 +19,14 @@ class Counter extends Component {
   render() {
     const { value, onIncrement, onDecrement } = this.props
     return (
-      <p className="hyfont-warn">
-        Clicked for {value} times 
+      <p>
+        <i className="icon-warn icon-4x icon-spin pull-left"></i>
+        Clicked for: {value} times 
         {' '}
-        <button className="add hyfont hyfont-play" onClick={onIncrement}></button>
+        <button className="add icon-play" onClick={onIncrement}></button>
         {' '}
-        <button className="sub hyfont hyfont-mute" onClick={onDecrement}></button>
-        {' '}
+        <button className="sub icon-mute" onClick={onDecrement}></button>
+        <br/>
         <button onClick={this.incrementIfOdd}>
           Increment if odd
         </button>
@@ -33,6 +34,7 @@ class Counter extends Component {
         <button onClick={this.incrementAsync}>
           Increment async
         </button>
+        <i class="icon-rot-anti icon-2x icon-border icon-muted pull-left"></i>
       </p>
     )
   }

@@ -5,7 +5,7 @@
   "main": "src/index.jsx",
   "repository": "https://github.com/Chyrain/Webpack-Demo.git",
   "scripts": {
-    "init": "npm install && gulp font:hyfont && npm run build:dll",
+    "init": "npm install && gulp font:icon && npm run build:dll",
     "start": "webpack-dev-server --config ./build_config/webpack.dev.config.js --progress --colors --hot --inline",
     "build": "webpack --config ./build_config/webpack.dist.config.js --progress --colors",
     "build:dll": " webpack --config ./build_config/webpack.dll.config.js --progress --colors",
