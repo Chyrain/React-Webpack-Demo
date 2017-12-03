@@ -2,7 +2,7 @@ const webpack = require('webpack');
 const path = require("path");
 
 const ROOT_PATH = path.resolve(__dirname, '../');
-const CONFIG_PATH = path.resolve(ROOT_PATH, ''); // 配置文件目录
+const CONFIG_PATH = path.resolve(ROOT_PATH, './build_config'); // 配置文件目录
 const BUILD_PATH = path.resolve(ROOT_PATH, 'dist'); // 编译输出目录
 
 const vendors = [
