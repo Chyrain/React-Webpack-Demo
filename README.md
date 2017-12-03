@@ -8,13 +8,17 @@ A webpack demo build for front-end engineering project.
 
 > Demo创建了一个使用react和redux的简单项目，用于测试项目构建。你可以根据自己的需求和喜好改变`build_config/`中的配置内容。
 
-## install
+## init
+
+Run this to init project.
 
 ```sh
-npm install
+npm run init
 ```
 
-## build font
+init includes font build and dll build.
+
+- build font
 
 Run this after you run `npm install`, and when you change fonts svg in `src/app/assets/fonts/`.
 
@@ -22,7 +26,7 @@ Run this after you run `npm install`, and when you change fonts svg in `src/app/
 gulp font:hyfont
 ```
 
-## build dll
+- build dll
 
 Run this after you run `npm install`, and when you change lib.
 
@@ -33,16 +37,15 @@ npm run build:dll
 ## develop with hot loader
 
 ```sh
-npm start
+npm start # npm run start
 ```
 
 ## build production
 
 ```sh
 npm run build
-# equals
-npm run build:dll && npm run build:dist
-# if dll not change, we dont need `npm run build:dll`, just use `npm run build:dist`
+# if dll need rebuild, you should use:
+npm run build:dist # equals `npm run build:dll && npm run build`
 ```
 
 
