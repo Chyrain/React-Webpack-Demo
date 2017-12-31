@@ -7,14 +7,15 @@ const { manifest, APP_PATH, config } = require('./webpack.base.config.js');
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); //分离CSS和JS文件
 
-module.exports = merge(config('production'), {
+const env = 'production';
+module.exports = merge(config(env), {
 	//配置生成Source Maps，选择合适的选项("source-map|cheap-module-source-map|eval-source-map|cheap-module-eval-source-map")
 	// devtool: 'source-map',
 	plugins: [
 		// 定义在生产环境
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"production"'
+				NODE_ENV: JSON.stringify(env)
 			}
 		}),
 		new ExtractTextPlugin({

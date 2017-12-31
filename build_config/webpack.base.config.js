@@ -52,7 +52,7 @@ module.exports.config = (env) => {
 					include: [
 						APP_PATH //important for performance!
 					],
-					use: false ?
+					use: isDebug(env) ?
 						[
 							{ loader: 'style-loader' },
 							{ loader: 'css-loader' },

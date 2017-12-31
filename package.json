@@ -7,9 +7,9 @@
   "scripts": {
     "init": "npm install && gulp font:icon && npm run build:dll",
     "start": "webpack-dev-server --config ./build_config/webpack.dev.config.js --progress --colors --hot --inline",
-    "build": "webpack --config ./build_config/webpack.dist.config.js --progress --colors",
+    "build:dist": "webpack --config ./build_config/webpack.dist.config.js --progress --colors",
     "build:dll": " webpack --config ./build_config/webpack.dll.config.js --progress --colors",
-    "build:dist": "npm run build:dll && npm run build",
+    "release": "gulp font:icon && npm run build:dll && npm run build",
     "server": "node ./build_config/server.js -p 8080 -P dist",
     "clean": "rimraf dist"
   },
@@ -20,6 +20,7 @@
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-error-boundaries": "^1.1.1",
     "redux": "^3.7.2"
   },
   "devDependencies": {

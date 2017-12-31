@@ -8,7 +8,8 @@ const HtmlwebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); //分离CSS和JS文件
 
-module.exports = merge(config('development'), {
+const env = 'development';
+module.exports = merge(config(env), {
 	//配置生成Source Maps，选择合适的选项("source-map|cheap-module-source-map|eval-source-map|cheap-module-eval-source-map")
 	devtool: 'eval-source-map', 
 	entry: {
@@ -19,15 +20,15 @@ module.exports = merge(config('development'), {
 	plugins: [
 		new webpack.DefinePlugin({
 			'process.env': {
-				NODE_ENV: '"development"'
+				NODE_ENV: JSON.stringify(env)
 			}
 		}),
-		// 此插件不支持热加载
-		new ExtractTextPlugin({
-			filename: '[name].css',
-			disable: false,
-			allChunks: true
-		}),
+		// 此插件不支持热加载,d
+		// new ExtractTextPlugin({
+		// 	filename: '[name].css',
+		// 	disable: false,
+		// 	allChunks: true
+		// }),
 		new HtmlwebpackPlugin({
 			template: path.resolve(__dirname, './index.tpl.html'),
 			filename: 'index.html',

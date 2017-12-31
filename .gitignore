@@ -58,6 +58,9 @@ typings/
 .env
 
 build_config/manifest.json
+# build后生成目录不需要加入git
 dist/
+# 生成的字体文件不需要加入git
 src/app/assets/fonts/*.*
+# 需要将字体svg源文件加入git
 !src/app/assets/fonts/svg/*.svg

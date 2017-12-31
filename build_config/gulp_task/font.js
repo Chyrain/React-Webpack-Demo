@@ -1,5 +1,9 @@
 /**
- * 从svg构造webfont
+ * 从svg构造webfont，读取 app/assets/fonts/svg 目录并生成字体文件和字体CSS样式，
+ * 功能与用法类似font-awesome，svg文件命名规则：<code>-<name>.svg
+ * 例如：uE80B-warn.svg
+ * 使用时引入css：icon-warn 即可
+ * 亦可应用在HTML CSS content 内容中，使用code代码："\E80B"
  */
 
 var gulp = require('gulp'),
