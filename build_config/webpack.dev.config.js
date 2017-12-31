@@ -15,7 +15,7 @@ module.exports = merge(config(env), {
 	entry: {
 		webpack: ['webpack-dev-server/client?http://0.0.0.0:8080',
 				  'webpack/hot/only-dev-server'],
-		index: path.resolve(APP_PATH, 'index.jsx')
+		app: path.resolve(APP_PATH, 'index.jsx')
 	},
 	plugins: [
 		new webpack.DefinePlugin({

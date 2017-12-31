@@ -1,18 +1,21 @@
-@font-face 
-	font-family "<%= fontName %>"
-	src url("<%= fontRefer %>/<%= fontName %>.eot")
-	src url("<%= fontRefer %>/<%= fontName %>.eot?#iefix") format("embedded-opentype"),
-		url("<%= fontRefer %>/<%= fontName %>.woff2") format("woff2"),
-		url("<%= fontRefer %>/<%= fontName %>.woff") format("woff"),
-		url("<%= fontRefer %>/<%= fontName %>.ttf") format("truetype"),
-		url("<%= fontRefer %>/<%= fontName %>.svg#<%= fontName %>") format("svg")
+$path : '../assets/fonts/';
+@font-face {
+	font-family: "icon";
+	src: url($path+"icon.eot");
+	src: url($path+"icon.eot?#iefix") format("embedded-opentype"),
+		url($path+"icon.woff2") format("woff2"),
+		url($path+"icon.woff") format("woff"),
+		url($path+"icon.ttf") format("truetype"),
+		url($path+"icon.svg#icon") format("svg");
+}
 
-[class^="<%= className %>-"],
-[class*=" <%= className %>-"]
-	font-family: "<%= fontName %>";
+[class^="icon-"],
+[class*=" icon-"] {
+	font-family: "icon";
 	display: inline-block;
 	width: auto;
 	height: auto;
+	margin-top: 0;
 	font-size: inherit;
 	font-weight: normal;
 	font-style: normal;
@@ -24,10 +27,9 @@
 	background-image: none;
 	background-position: 0 0;
 	background-repeat: repeat;
-	margin-top: 0;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
-	&:before
+	&:before {
 		// width: 1.0714em;
 		// vertical-align: -4%;
 		// speak: none;
@@ -37,15 +39,19 @@
 		text-decoration: inherit;
 		display: inline-block;
 		speak: none;
+	}
+}
+.icon-font-bg {// 透明字 使用覆盖图片
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: 10em;
+	color: transparent !important;
+	&:before {
+		color: transparent !important;
+	}
+}
 
-/.<%= className %>-font-bg // 透明字 使用覆盖图片
-	background-size cover
-	background-position center
-	background-repeat no-repeat
-	border-radius 10em
-	color transparent !important
-	&:before
-		color transparent !important
 
 // 扩展图标样式
 @keyframes spin{
@@ -57,8 +63,8 @@
 	}
 }
 
-[class^="<%= className %>-"],
-[class*=" <%= className %>-"] {
+[class^="icon-"],
+[class*=" icon-"] {
 	&.icon-spin {
 		animation: spin 2s infinite linear;
 	}
@@ -118,11 +124,27 @@
 }
 
 // IconFonts
-iconfonts = {<% _.each(glyphs, function(glyph) { %>
-	<%= glyph.name %>: "\<%= glyph.unicode['0'].charCodeAt(0).toString(16).toUpperCase() %>",<% }); %>
-}
+$iconfonts: (
+	(name: "play", code: "\E801"),
+	(name: "back", code: "\E802"),
+	(name: "mute", code: "\E804"),
+	(name: "phone", code: "\E805"),
+	(name: "time", code: "\E806"),
+	(name: "msg", code: "\E807"),
+	(name: "card", code: "\E808"),
+	(name: "like", code: "\E809"),
+	(name: "warn", code: "\E80B"),
+	(name: "person", code: "\E80C"),
+	(name: "balloon", code: "\E80D"),
+	(name: "face", code: "\E80E"),
+	(name: "addr", code: "\E80F"),
+);
 
-for name, code in iconfonts
-	.<%= className %>-{name}
-		&::before
-			content: code
+@for $i from 1 through length($iconfonts) {
+	$item: nth($iconfonts, $i);
+	.icon-#{map-get($item, name)} {
+		&::before {
+			content: map-get($item, code);
+		}
+	}
+}

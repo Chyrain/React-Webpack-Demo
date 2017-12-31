@@ -7,10 +7,11 @@
  */
 
 var gulp = require('gulp'),
+	path = require('path'),
 	iconfont = require('gulp-iconfont'),
 	consolidate = require('gulp-consolidate'),
 	rename = require('gulp-rename'),
-	APP_PATH = 'src/app/'; // 相对于项目根目录
+	SRC_PATH = 'src/'; // 相对于项目根目录
 
 // key值为字体名称（这里是'hyfont'）
 regTasks({
@@ -35,8 +36,9 @@ function regTasks(options) {
 }
 function regTask(name, val) {
 	gulp.task('font:' + name, function() {
+		const outputPath = path.resolve(SRC_PATH, val.dir || name);
 		return gulp.src((val.dir || name) + '/svg/*.svg', {
-				cwd: APP_PATH
+				cwd: SRC_PATH
 			})
 			.pipe(iconfont({
 				fontName: name, // 字体的family名
@@ -58,14 +60,14 @@ function regTask(name, val) {
 					})
 					.pipe(consolidate('lodash', {
 						glyphs: glyphs,
-						fontName: name,
-						fontRefer: 'assets/fonts',
-						fontPath: APP_PATH + (val.dir || name),
+						fontName: name,	// 字体名
+						fontRefer: '../assets/fonts', // @font-face引用字体文件路径
+						fontPath: outputPath,
 						className: (val.className || name)
 					}))
 					.pipe(rename({basename: name}))
-					.pipe(gulp.dest(APP_PATH + (val.dir || name)));
+					.pipe(gulp.dest(outputPath));
 			})
-			.pipe(gulp.dest(APP_PATH + (val.dir || name)));
+			.pipe(gulp.dest(outputPath));
 	});
 }

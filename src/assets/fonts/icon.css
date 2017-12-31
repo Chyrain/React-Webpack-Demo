@@ -1,16 +1,16 @@
 @font-face {
-	font-family: "<%= fontName %>";
-	src: url("<%= fontRefer %>/<%= fontName %>.eot");
-	src: url("<%= fontRefer %>/<%= fontName %>.eot?#iefix") format("embedded-opentype"),
-		url("<%= fontRefer %>/<%= fontName %>.woff2") format("woff2"),
-		url("<%= fontRefer %>/<%= fontName %>.woff") format("woff"),
-		url("<%= fontRefer %>/<%= fontName %>.ttf") format("truetype"),
-		url("<%= fontRefer %>/<%= fontName %>.svg#<%= fontName %>") format("svg");
+	font-family: "icon";
+	src: url("../assets/fonts/icon.eot");
+	src: url("../assets/fonts/icon.eot?#iefix") format("embedded-opentype"),
+		url("../assets/fonts/icon.woff2") format("woff2"),
+		url("../assets/fonts/icon.woff") format("woff"),
+		url("../assets/fonts/icon.ttf") format("truetype"),
+		url("../assets/fonts/icon.svg#icon") format("svg");
 }
 
-[class^="<%= className %>-"],
-[class*=" <%= className %>-"] {
-	font-family: "<%= fontName %>";
+[class^="icon-"],
+[class*=" icon-"] {
+	font-family: "icon";
 	display: inline-block;
 	width: auto;
 	height: auto;
@@ -28,14 +28,14 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
-[class^="<%= className %>-"]::before,
-[class*=" <%= className %>-"]::before {
+[class^="icon-"]::before,
+[class*=" icon-"]::before {
 	text-decoration: inherit;
 	display: inline-block;
 	speak: none;
 }
 
-.<%= className %>-font-bg { 
+.icon-font-bg { 
 	/* 透明字 使用覆盖图片 */
 	background-size: cover;
 	background-position: center;
@@ -43,7 +43,7 @@
 	border-radius: 10em;
 	color: transparent !important;
 }
-.<%= className %>-font-bg::before {
+.icon-font-bg::before {
 	color: transparent !important;
 }
 
@@ -118,7 +118,43 @@
   color: #eee; 
 }
 
-<% _.each(glyphs, function(glyph) { %>
-.v5-<%= glyph.name %>::before {
-	content: "\<%= glyph.unicode['0'].charCodeAt(0).toString(16).toUpperCase() %>";
-}<% }); %>
+
+.v5-play::before {
+	content: "\E801";
+}
+.v5-back::before {
+	content: "\E802";
+}
+.v5-mute::before {
+	content: "\E804";
+}
+.v5-phone::before {
+	content: "\E805";
+}
+.v5-time::before {
+	content: "\E806";
+}
+.v5-msg::before {
+	content: "\E807";
+}
+.v5-card::before {
+	content: "\E808";
+}
+.v5-like::before {
+	content: "\E809";
+}
+.v5-warn::before {
+	content: "\E80B";
+}
+.v5-person::before {
+	content: "\E80C";
+}
+.v5-balloon::before {
+	content: "\E80D";
+}
+.v5-face::before {
+	content: "\E80E";
+}
+.v5-addr::before {
+	content: "\E80F";
+}

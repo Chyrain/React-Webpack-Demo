@@ -1,15 +1,15 @@
 @font-face 
-	font-family "<%= fontName %>"
-	src url("<%= fontRefer %>/<%= fontName %>.eot")
-	src url("<%= fontRefer %>/<%= fontName %>.eot?#iefix") format("embedded-opentype"),
-		url("<%= fontRefer %>/<%= fontName %>.woff2") format("woff2"),
-		url("<%= fontRefer %>/<%= fontName %>.woff") format("woff"),
-		url("<%= fontRefer %>/<%= fontName %>.ttf") format("truetype"),
-		url("<%= fontRefer %>/<%= fontName %>.svg#<%= fontName %>") format("svg")
+	font-family "icon"
+	src url("../assets/fonts/icon.eot")
+	src url("../assets/fonts/icon.eot?#iefix") format("embedded-opentype"),
+		url("../assets/fonts/icon.woff2") format("woff2"),
+		url("../assets/fonts/icon.woff") format("woff"),
+		url("../assets/fonts/icon.ttf") format("truetype"),
+		url("../assets/fonts/icon.svg#icon") format("svg")
 
-[class^="<%= className %>-"],
-[class*=" <%= className %>-"]
-	font-family: "<%= fontName %>";
+[class^="icon-"],
+[class*=" icon-"]
+	font-family: "icon";
 	display: inline-block;
 	width: auto;
 	height: auto;
@@ -38,7 +38,7 @@
 		display: inline-block;
 		speak: none;
 
-/.<%= className %>-font-bg // 透明字 使用覆盖图片
+/.icon-font-bg // 透明字 使用覆盖图片
 	background-size cover
 	background-position center
 	background-repeat no-repeat
@@ -57,8 +57,8 @@
 	}
 }
 
-[class^="<%= className %>-"],
-[class*=" <%= className %>-"] {
+[class^="icon-"],
+[class*=" icon-"] {
 	&.icon-spin {
 		animation: spin 2s infinite linear;
 	}
@@ -118,11 +118,23 @@
 }
 
 // IconFonts
-iconfonts = {<% _.each(glyphs, function(glyph) { %>
-	<%= glyph.name %>: "\<%= glyph.unicode['0'].charCodeAt(0).toString(16).toUpperCase() %>",<% }); %>
+iconfonts = {
+	play: "\E801",
+	back: "\E802",
+	mute: "\E804",
+	phone: "\E805",
+	time: "\E806",
+	msg: "\E807",
+	card: "\E808",
+	like: "\E809",
+	warn: "\E80B",
+	person: "\E80C",
+	balloon: "\E80D",
+	face: "\E80E",
+	addr: "\E80F",
 }
 
 for name, code in iconfonts
-	.<%= className %>-{name}
+	.icon-{name}
 		&::before
 			content: code

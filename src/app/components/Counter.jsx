@@ -20,7 +20,7 @@ class Counter extends Component {
     const { value, onIncrement, onDecrement } = this.props
     return (
       <p>
-        <i className="icon-warn icon-4x icon-spin pull-left"></i>
+        <i className="icon-warn icon-4x icon-spin icon-pull-left"></i>
         Clicked for: {value} times 
         {' '}
         <button className="add icon-play" onClick={onIncrement}></button>
@@ -34,7 +34,7 @@ class Counter extends Component {
         <button onClick={this.incrementAsync}>
           Increment async
         </button>
-        <i class="icon-like icon-2x icon-border icon-muted pull-left"></i>
+        <i class="icon-like icon-2x icon-border icon-muted icon-pull-left icon-pulse-4"></i>
       </p>
     )
   }

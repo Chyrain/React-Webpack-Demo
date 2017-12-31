@@ -1,0 +1,15 @@
+{
+  "play": "\E801",
+  "back": "\E802",
+  "mute": "\E804",
+  "phone": "\E805",
+  "time": "\E806",
+  "msg": "\E807",
+  "card": "\E808",
+  "like": "\E809",
+  "warn": "\E80B",
+  "person": "\E80C",
+  "balloon": "\E80D",
+  "face": "\E80E",
+  "addr": "\E80F",
+}

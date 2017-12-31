@@ -1,4 +1,4 @@
-@import 'assets/fonts/icon.scss';
+@import '../assets/fonts/icon.scss';
 @import './Components/Counter.scss';
 
 $fontStack:    Helvetica, sans-serif;
@@ -8,5 +8,5 @@ body {
   font-family: $fontStack;
   color: $primaryColor;
   /* 图片相对路径为/src */
-  background: url('./assets/img/bg.jpeg') center no-repeat;
+  background: url('../assets/img/bg.jpeg') center no-repeat;
 }

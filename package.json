@@ -9,7 +9,7 @@
     "start": "webpack-dev-server --config ./build_config/webpack.dev.config.js --progress --colors --hot --inline",
     "build:dist": "webpack --config ./build_config/webpack.dist.config.js --progress --colors",
     "build:dll": " webpack --config ./build_config/webpack.dll.config.js --progress --colors",
-    "release": "gulp font:icon && npm run build:dll && npm run build",
+    "release": "gulp font:icon && npm run build:dll && npm run build:dist",
     "server": "node ./build_config/server.js -p 8080 -P dist",
     "clean": "rimraf dist"
   },
