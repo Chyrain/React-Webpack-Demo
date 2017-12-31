@@ -26,7 +26,7 @@ class Counter extends Component {
         <button className="add icon-play" onClick={onIncrement}></button>
         {' '}
         <button className="sub icon-mute" onClick={onDecrement}></button>
-        <br/>
+        <br/><br/>
         <button onClick={this.incrementIfOdd}>
           Increment if odd
         </button>

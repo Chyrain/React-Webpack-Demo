@@ -15,22 +15,6 @@ function isDebug(env) {
 	return env === 'development';
 }
 
-// function fix2number(n) {
-// 	return [0,n].join('').slice(-2);  
-// }
-// // 'YMd-H:m:s' => 20171202-19:34:23
-// function getTime(format) {  
-// 	var curdate = new Date();  
-// 	if (format == undefined) return curDate;  
-// 	format = format.replace(/Y/i, fix2number(curdate.getFullYear()));  
-// 	format = format.replace(/M/, fix2number(curdate.getMonth() + 1));  
-// 	format = format.replace(/d/i, fix2number(curdate.getDate()));  
-// 	format = format.replace(/H/i, fix2number(curdate.getHours()));  
-// 	format = format.replace(/m/, fix2number(curdate.getMinutes()));  
-// 	format = format.replace(/s/i, fix2number(curdate.getSeconds()));
-// 	return format;  
-// }
-
 module.exports = {
 	manifest,
 	ROOT_PATH,
