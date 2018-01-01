@@ -20,7 +20,7 @@ init includes iconfont build and dll build.
 
 - build iconfont
 
-Run this after you run `npm install`, and when you change fonts icon(svg) in `src/app/assets/fonts/`.
+Run this after you run `npm install`, and when you change fonts icon(svg) in `src/assets/fonts/`.
 
 ```sh
 gulp font:icon
@@ -51,7 +51,7 @@ npm start # npm run start
 ## release production
 
 ```sh
-npm run release # equals `gulp font:icon && npm run build:dll && npm run build:dist`
+npm run release # equals `npm run build:dll && npm run build:dist`
 ```
 
 

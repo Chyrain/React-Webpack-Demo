@@ -49,7 +49,7 @@ function regTask(name, val) {
 				fontHeight: 1000, // 字体高度 默认为输入图片中最高图片的高度
 				descent: 140, // 生成的字体下边线相对baseline的偏移 向下为正
 				// ascent: 820, // 生成的字体上边线相对baseline的偏移 向上为正
-				metadata: 'Copyright © 2017 by V5KF. All rights reserved.', // 元数据 可用于存储版权信息
+				metadata: 'Copyright © 2018 by V5KF. All rights reserved.', // 元数据 可用于存储版权信息
 				startUnicode: 59905,
 				prependUnicode: true // true会将生成的编码添加到svg文件名前，用于保证下次使用相同的编码
 			}))

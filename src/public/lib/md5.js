@@ -19,8 +19,18 @@
 
 /*jslint bitwise: true */
 /*global unescape, define */
-
-(function ($) {
+(function(global, factory) {
+	if (typeof module === 'object') {
+		module.exports = factory(global);
+	} else if (typeof define === 'function') {
+		define(function() {
+			return factory(global);
+		});
+	} else {
+		factory(global);
+	}
+}((typeof window !== 'undefined' ? window : this), function(window) {
+// (function ($) {
     'use strict';
 
     /*
@@ -269,6 +279,7 @@
     //         return md5;
     //     });
     // } else {
-        $.md5 = md5;
+    //     $.md5 = md5;
     // }
-}(this));
+	return (window.md5 = md5);
+}));

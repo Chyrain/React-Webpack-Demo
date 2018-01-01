@@ -25,7 +25,7 @@ console.log('listen on port:' + port, 'with path:' + publicPath);
 //指定一个监听的接口
 httpServer.listen(port, function() {
     console.log(`app is running at port:${port}`);
-    console.log(`url: http://localhost:${port}/app`);
+    console.log(`url: http://localhost:${port}/`);
     cp.exec(`explorer http://localhost:${port}`, function () {
     });
 });

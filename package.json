@@ -6,10 +6,11 @@
   "repository": "https://github.com/Chyrain/Webpack-Demo.git",
   "scripts": {
     "init": "npm install && gulp font:icon && npm run build:dll",
+    "build:font": "gulp font:icon",
     "start": "webpack-dev-server --config ./build_config/webpack.dev.config.js --progress --colors --hot --inline",
     "build:dist": "webpack --config ./build_config/webpack.dist.config.js --progress --colors",
     "build:dll": " webpack --config ./build_config/webpack.dll.config.js --progress --colors",
-    "release": "gulp font:icon && npm run build:dll && npm run build:dist",
+    "release": "npm run build:dll && npm run build:dist",
     "server": "node ./build_config/server.js -p 8080 -P dist",
     "clean": "rimraf dist"
   },
@@ -21,6 +22,7 @@
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-error-boundaries": "^1.1.1",
+    "react-redux": "^5.0.6",
     "redux": "^3.7.2"
   },
   "devDependencies": {

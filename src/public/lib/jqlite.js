@@ -3449,5 +3449,5 @@
 	$.extend({ timer: timer });
 	// ## util ##
 	// ## jqlite ##
-	return (window.$ = $);
+	return (window['$'] = $);
 }));

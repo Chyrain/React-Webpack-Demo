@@ -32,16 +32,18 @@ module.exports = merge(config(env), {
 		// 将 moduel id 换成具体路径名（使用commonChunkHash时）
 		new webpack.HashedModuleIdsPlugin(),
 		//在文件开头插入banner
-		new webpack.BannerPlugin('Copyright © 2017 by V5KF. All rights reserved.'),
+		new webpack.BannerPlugin('Copyright © 2018 by V5KF. All rights reserved.'),
 		new HtmlwebpackPlugin({
+			chunksSortMode: 'manual',
 			template: path.join(__dirname, './index.tpl.html'),
 			filename: 'index.html',
 			inject: 'body',
 			dll: `../lib/${manifest.name}.js`,
 			hash: false,
+			chunks: ['common', 'vendor', 'app'],
 			minify: { // HTML文件压缩
 				removeComments: true, //移除HTML中的注释
-				collapseWhitespace: true //删除空白符与换行符
+				collapseWhitespace: false //删除空白符与换行符
 			}
 		})
 	]

@@ -7,6 +7,8 @@ const ROOT_PATH = path.resolve(__dirname, '../');
 const SRC_PATH = path.resolve(ROOT_PATH, 'src'); // 所有源文件所在top路径
 const BUILD_PATH = path.resolve(ROOT_PATH, 'dist'); // 编译输出目录
 const APP_PATH = path.resolve(SRC_PATH, 'app'); // 具体应用业务源代码目录
+const ASYNC_PATH = path.resolve(SRC_PATH, 'public/async'); // 通用代码目录
+const LIB_PATH = path.resolve(SRC_PATH, 'public/lib'); // 通用第三方库目录
 
 // const isDebug = process.env.NODE_ENV !== '"production"';
 const manifest = require('./manifest.json');
@@ -23,16 +25,22 @@ module.exports = {
 	BUILD_PATH
 };
 
-module.exports.config = (env) => { 
+module.exports.config = (env) => {
 	return {
 		//配置生成Source Maps，选择合适的选项("source-map|cheap-module-source-map|eval-source-map|cheap-module-eval-source-map")
 		// devtool: 'source-map', 
 		entry: {
+			// 有时需要更改的自定义公共库放到vendor,不用更改代码的第三方库放到dll,使用率低的大文件需要时异步加载(放到require.ensure)
+			vendor: [
+				// path.resolve(ASYNC_PATH, 'lame.js'), // require.ensure 异步加载
+				// path.resolve(LIB_PATH, 'md5.js'),
+				path.resolve(LIB_PATH, 'jqlite.js')
+			],
 			app: path.resolve(APP_PATH, 'index.jsx')
 		},
 		output: {
 			path: path.resolve(BUILD_PATH, './'), //打包后的文件存放的地方
-			chunkFilename: isDebug(env) ? '[id].chunk.js' : '[chunkhash].[id].chunk.js',
+			chunkFilename: isDebug(env) ? '[name].chunk.js' : '[name]_[chunkhash:10].chunk.js',	// commonChunk名称
 			filename: isDebug(env) ? '[name].js' : '[name]_[chunkhash:10].js' //打包后输出文件的文件名
 		},
 		resolve: {
@@ -157,6 +165,31 @@ module.exports.config = (env) => {
 			]
 		},
 		plugins: [
+			new webpack.HashedModuleIdsPlugin(),
+			new webpack.optimize.CommonsChunkPlugin({
+				names: ['vendor'],
+				filename: isDebug(env) ? '[name].chunk.js' : '[name]_[chunkhash:10].chunk.js',
+				chunks: ['vendor']
+				// children: true,
+				// (选择所有被选 chunks 的子 chunks)
+				// async: true,
+				// (创建一个异步 公共chunk)
+				// minChunks: Infinity,
+				// (在提取之前需要至少三个子 chunk 共享这个模块)
+			}),
+			// 多页面应用抽取出公共模块
+			// new webpack.optimize.CommonsChunkPlugin({
+			// 	// ['生成的项目公共模块文件名', '第三方模块文件名']
+			// 	name: ['common'],
+			// 	filename: '[name]_[chunkhash:10].chunk.js',
+			// 	minChunks: 3, // (在提取common之前需要至少2个子 chunk 共享这个模块)
+			// }),
+
+			// new webpack.optimize.CommonsChunkPlugin({
+			// 	name: 'manifest',
+			// 	chunks: ['vendor'],
+			// 	// minChunks: Infinity
+			// }),
 			new webpack.DllReferencePlugin({
 				context: __dirname,
 				manifest: manifest
