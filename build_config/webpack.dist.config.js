@@ -2,7 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const { manifest, APP_PATH, config } = require('./webpack.base.config.js');
+const { MODULE, manifest, APP_PATH, BUILD_PATH, config } = require('./webpack.base.config.js');
 
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); //分离CSS和JS文件
@@ -23,19 +23,19 @@ module.exports = merge(config(env), {
 			disable: false,
 			allChunks: true
 		}),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false
-			},
-			sourceMap: true
-		}),
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	compress: {
+		// 		warnings: false
+		// 	},
+		// 	sourceMap: true
+		// }),
 		// 将 moduel id 换成具体路径名（使用commonChunkHash时）
 		new webpack.HashedModuleIdsPlugin(),
 		//在文件开头插入banner
 		new webpack.BannerPlugin('Copyright © 2018 by V5KF. All rights reserved.'),
 		new HtmlwebpackPlugin({
 			chunksSortMode: 'manual',
-			template: path.join(__dirname, './index.tpl.html'),
+			template: path.resolve(APP_PATH, './index.html'),
 			filename: 'index.html',
 			inject: 'body',
 			dll: `../lib/${manifest.name}.js`,

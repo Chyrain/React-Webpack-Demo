@@ -13,8 +13,7 @@ const vendors = [
   'react-redux',
   'prop-types',
   'redux',
-  path.resolve(LIB_PATH, 'md5.js'),
-  // path.resolve(LIB_PATH, 'jqlite')
+  path.resolve(LIB_PATH, 'md5.js')
 ];
 
 module.exports = {

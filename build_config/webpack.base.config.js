@@ -2,11 +2,15 @@
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin'); //分离CSS和JS文件
+const argv = require('yargs').argv;
+
+// 应用模块名（可通过--define传参）
+const MODULE = argv.define || 'app';
 
 const ROOT_PATH = path.resolve(__dirname, '../');
 const SRC_PATH = path.resolve(ROOT_PATH, 'src'); // 所有源文件所在top路径
 const BUILD_PATH = path.resolve(ROOT_PATH, 'dist'); // 编译输出目录
-const APP_PATH = path.resolve(SRC_PATH, 'app'); // 具体应用业务源代码目录
+const APP_PATH = path.resolve(SRC_PATH, MODULE); // 具体应用业务源代码目录
 const ASYNC_PATH = path.resolve(SRC_PATH, 'public/async'); // 通用代码目录
 const LIB_PATH = path.resolve(SRC_PATH, 'public/lib'); // 通用第三方库目录
 
@@ -18,6 +22,7 @@ function isDebug(env) {
 }
 
 module.exports = {
+	MODULE,
 	manifest,
 	ROOT_PATH,
 	SRC_PATH,
@@ -33,13 +38,13 @@ module.exports.config = (env) => {
 			// 有时需要更改的自定义公共库放到vendor,不用更改代码的第三方库放到dll,使用率低的大文件需要时异步加载(放到require.ensure)
 			vendor: [
 				// path.resolve(ASYNC_PATH, 'lame.js'), // require.ensure 异步加载
-				// path.resolve(LIB_PATH, 'md5.js'),
+				// path.resolve(LIB_PATH, 'md5.js'), // 打包进dll
 				path.resolve(LIB_PATH, 'jqlite.js')
 			],
-			app: path.resolve(APP_PATH, 'index.jsx')
+			app: path.resolve(APP_PATH, 'index.js')
 		},
 		output: {
-			path: path.resolve(BUILD_PATH, './'), //打包后的文件存放的地方
+			path: path.resolve(BUILD_PATH, MODULE), //打包后的文件存放的地方
 			chunkFilename: isDebug(env) ? '[name].chunk.js' : '[name]_[chunkhash:10].chunk.js',	// commonChunk名称
 			filename: isDebug(env) ? '[name].js' : '[name]_[chunkhash:10].js' //打包后输出文件的文件名
 		},
@@ -106,7 +111,7 @@ module.exports.config = (env) => {
 									}
 								}
 							],
-							publicPath: './'
+							publicPath: '../'
 						})
 				},
 				{
@@ -119,7 +124,7 @@ module.exports.config = (env) => {
 							loader: 'url-loader',
 							options: {
 								limit: 4000,
-								name: 'assets/img/[name]_[hash:10].[ext]'
+								name: '../assets/img/[name]_[hash:10].[ext]'
 							}
 						},
 						{
@@ -157,7 +162,7 @@ module.exports.config = (env) => {
 							loader: 'url-loader',
 							options: {
 								limit: 1,
-								name: 'assets/fonts/[name]_[hash:10].[ext]'
+								name: '../assets/fonts/[name]_[hash:10].[ext]'
 							}
 						}
 					]
@@ -166,10 +171,21 @@ module.exports.config = (env) => {
 		},
 		plugins: [
 			new webpack.HashedModuleIdsPlugin(),
+			// 多页面应用抽取出公共模块
+			// common.bundle.js -> 包含main1.js和main2.js公共部分的代码文件（不包含第三方库代码） 
+			// vendor.chunk.js -> 包含第三方库
+			new webpack.optimize.CommonsChunkPlugin({
+				// ['生成的项目公共模块文件名']
+				names: ['common'],
+				chunks: ['app'],
+				filename: isDebug(env) ? '[name].bundle.js' : '[name]_[chunkhash:10].bundle.js',
+				minChunks: 2, // (在提取common之前需要至少2个子 chunk 共享这个模块)
+			}),
 			new webpack.optimize.CommonsChunkPlugin({
 				names: ['vendor'],
 				filename: isDebug(env) ? '[name].chunk.js' : '[name]_[chunkhash:10].chunk.js',
-				chunks: ['vendor']
+				chunks: ['common'],
+				minChunks: Infinity
 				// children: true,
 				// (选择所有被选 chunks 的子 chunks)
 				// async: true,
@@ -177,14 +193,6 @@ module.exports.config = (env) => {
 				// minChunks: Infinity,
 				// (在提取之前需要至少三个子 chunk 共享这个模块)
 			}),
-			// 多页面应用抽取出公共模块
-			// new webpack.optimize.CommonsChunkPlugin({
-			// 	// ['生成的项目公共模块文件名', '第三方模块文件名']
-			// 	name: ['common'],
-			// 	filename: '[name]_[chunkhash:10].chunk.js',
-			// 	minChunks: 3, // (在提取common之前需要至少2个子 chunk 共享这个模块)
-			// }),
-
 			// new webpack.optimize.CommonsChunkPlugin({
 			// 	name: 'manifest',
 			// 	chunks: ['vendor'],

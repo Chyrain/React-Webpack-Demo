@@ -2,7 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const merge = require('webpack-merge');
-const { manifest, APP_PATH, BUILD_PATH, config } = require('./webpack.base.config.js');
+const { MODULE, manifest, APP_PATH, BUILD_PATH, config } = require('./webpack.base.config.js');
 
 const HtmlwebpackPlugin = require('html-webpack-plugin');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
@@ -26,7 +26,7 @@ module.exports = merge(config(env), {
 		// }),
 		new HtmlwebpackPlugin({
 			chunksSortMode: 'manual',
-			template: path.resolve(__dirname, './index.tpl.html'),
+			template: path.resolve(APP_PATH, './index.html'),
 			filename: 'index.html',
 			inject: 'body',
 			showErrors: true,
