@@ -14,7 +14,9 @@
     "server": "PORT=8080 node ./build_config/app.js",
     "dev": "webpack-dev-server --config ./build_config/webpack.dev.config.js --progress --colors --hot --inline --define",
     "dist": "webpack --config ./build_config/webpack.dist.config.js --progress --colors --define",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "clean:app": "rimraf dist/app",
+    "clean:counter": "rimraf dist/counter"
   },
   "author": "Chyrain",
   "license": "ISC",
@@ -31,6 +33,7 @@
     "autoprefixer": "^7.1.6",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
+    "babel-plugin-import": "^1.6.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
@@ -48,6 +51,8 @@
     "gulp-rename": "^1.2.2",
     "html-webpack-plugin": "^2.30.1",
     "image-webpack-loader": "^3.4.2",
+    "jade": "^1.11.0",
+    "morgan": "^1.9.0",
     "node-sass": "^4.7.2",
     "open-browser-webpack-plugin": "0.0.5",
     "postcss-loader": "^2.0.9",

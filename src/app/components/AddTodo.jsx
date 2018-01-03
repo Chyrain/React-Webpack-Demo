@@ -21,6 +21,7 @@ export default class AddTodo extends React.PureComponent {
       notification.open({
         description: '您尚未输入内容！',
       })
+      // window.alert('您尚未输入内容！')
     }
   }
 
@@ -32,6 +33,9 @@ export default class AddTodo extends React.PureComponent {
           <Input id="newItem" ref={el => this.input = el.input} type="text" placeholder="请输入您的待办事项"></Input>
           <Button type="primary" className="pull-right" onClick={this.saveTodo}>保存</Button>
         </Form.Item>
+        {/* <label htmlFor="newItem"></label>
+        <input id="newItem" ref={el => this.input = el} type="text" placeholder="请输入您的待办事项"></input>
+        <button type="primary" className="btn-info" onClick={this.saveTodo}>保存</button> */}
       </div>
     )
   }

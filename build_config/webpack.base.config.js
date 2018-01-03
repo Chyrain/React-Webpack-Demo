@@ -62,9 +62,9 @@ module.exports.config = (env) => {
 				},
 				{
 					test: /\.(styl|scss|css)$/,
-					include: [
-						SRC_PATH //important for performance!
-					],
+					// include: [ // 去掉，以免引入不了node_modules中的库css
+					// 	SRC_PATH //important for performance!
+					// ],
 					use: isDebug(env) ?
 						[
 							{ loader: 'style-loader' },
@@ -86,7 +86,7 @@ module.exports.config = (env) => {
 							}
 						]
 						: ExtractTextPlugin.extract({
-							//fallback: 'style-loader',
+							fallback: 'style-loader',
 							use: [
 								{ 
 									loader: 'css-loader',

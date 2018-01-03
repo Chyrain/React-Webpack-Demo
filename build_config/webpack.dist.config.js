@@ -23,12 +23,12 @@ module.exports = merge(config(env), {
 			disable: false,
 			allChunks: true
 		}),
-		// new webpack.optimize.UglifyJsPlugin({
-		// 	compress: {
-		// 		warnings: false
-		// 	},
-		// 	sourceMap: true
-		// }),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false
+			},
+			sourceMap: true
+		}),
 		// 将 moduel id 换成具体路径名（使用commonChunkHash时）
 		new webpack.HashedModuleIdsPlugin(),
 		//在文件开头插入banner

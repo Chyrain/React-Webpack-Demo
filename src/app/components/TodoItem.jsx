@@ -44,6 +44,14 @@ export default class TodoItem extends React.PureComponent {
             <Button type="danger" className="pull-right" onClick={this.deleteTask}>删除</Button>
           </Col>
         </Row>
+        {/* <div>
+          <div span={12}>
+            <input type="checkbox" checked={itemChecked} onChange={this.toggleComplete} /> {task}
+          </div>
+          <div span={12}>
+            <button type="danger" className="btn-danger" onClick={this.deleteTask}>删除</button>
+          </div>
+        </div> */}
       </li>
     )
   }
