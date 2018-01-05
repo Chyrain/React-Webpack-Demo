@@ -29,6 +29,6 @@ class TodoList extends React.Component {
 const mapStateToProps = (state) => ({
   todos: state.todos || []
 })
-const mapDispatchToProps = (dispatch) => {}
+const mapDispatchToProps = null
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoList)

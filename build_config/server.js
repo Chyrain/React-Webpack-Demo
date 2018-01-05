@@ -138,7 +138,6 @@ function processRequest(request, response) {
             });
             // 读取文件
             stream.pipe(response);
-            return;
         }
     });
 }

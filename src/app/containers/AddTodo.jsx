@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import AddTodo from '../components/AddTodo'
 import { addTodo } from '../actions'
 
-const mapStateToProps = (state) => {}
+const mapStateToProps = null
 const mapDispatchToProps = (dispatch) => {
   return {
     saveTodo: (text) => {
